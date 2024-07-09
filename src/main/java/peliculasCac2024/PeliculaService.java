@@ -98,16 +98,16 @@ public class PeliculaService {
     public void updatePelicula(Pelicula pelicula) throws SQLException, ClassNotFoundException 
     {
         Connection con = conexion.getConnection();
-        String sql = "UPDATE peliculas SET titulo = ?,  genero = ?, duracion = ?, director = ?, reparto = ?, sinopsis = ?, imagen = ? WHERE id = ?";
+        String sql = "UPDATE peliculas SET titulo = ?,  genero = ?, duracion = ?, director = ?, reparto = ?, sinopsis = ?, imagen = ? " + "WHERE id = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, pelicula.getTitulo());      
-        ps.setString(3, pelicula.getGenero());
-        ps.setString(4, pelicula.getDuracion());
-        ps.setString(5, pelicula.getDirector());
-        ps.setString(6, pelicula.getReparto());
-        ps.setString(7, pelicula.getSinopsis());
-        ps.setString(8, pelicula.getImagen());
-        ps.setInt(9, pelicula.getId());
+        ps.setString(2, pelicula.getGenero());
+        ps.setString(3, pelicula.getDuracion());
+        ps.setString(4, pelicula.getDirector());
+        ps.setString(5, pelicula.getReparto());
+        ps.setString(6, pelicula.getSinopsis());
+        ps.setString(7, pelicula.getImagen());
+        ps.setInt(8, pelicula.getId());
         ps.executeUpdate();
 
         ps.close();

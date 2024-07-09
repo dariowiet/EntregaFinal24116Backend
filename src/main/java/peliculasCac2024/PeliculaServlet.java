@@ -48,7 +48,7 @@ public class PeliculaServlet extends HttpServlet {
 	
 	{
 		String pathInfo=req.getPathInfo();
-		
+
 		
 		try
 		{
@@ -92,24 +92,26 @@ public class PeliculaServlet extends HttpServlet {
 		
 	}
 	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException
 	/*para llegar a este metodo le tuvo que llegar una peticion http (get, post)*/, IOException
 	{
+		System.out.println("holaaa");
 		
-		try
-		{
+
 		/* que me lea todo lo que hay en el req de la clase pelicula*/
 		Pelicula pelicula = objectMapper.readValue(req.getReader(), Pelicula.class);
-		peliculaService.addPelicula(pelicula);
-		
-		resp.setStatus(HttpServletResponse.SC_CREATED);
+		try {
+			peliculaService.addPelicula(pelicula);
+			resp.setStatus(HttpServletResponse.SC_CREATED);
 		}
 		catch (SQLException|ClassNotFoundException e )
 		{
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 		}
-	
+
+
 	
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException
 	/*para llegar a este metodo le tuvo que llegar una peticion http (get, post)*/, IOException
